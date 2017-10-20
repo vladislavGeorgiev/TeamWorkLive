@@ -12,6 +12,8 @@
             price: 100
         }
     ];
+	
+	
 
     let users = [
         {

@@ -327,6 +327,8 @@ function createAdvertSuccess(response) {
             showView('viewEditAd');
         }
     }
+	
+	
 
     // advertisement/edit POST
     function editAdvert() {
