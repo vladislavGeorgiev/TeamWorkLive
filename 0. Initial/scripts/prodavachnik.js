@@ -1,4 +1,9 @@
 function startApp() {
+
+    if (sessionStorage.getItem('authToken') !== null) {
+        let username = sessionStorage.getItem('username');
+        $('#loggedInUser').text("Welcome, " + username + "!");
+    }
     showHideMenuLinks();
     showHomeView();
 
@@ -13,21 +18,18 @@ function startApp() {
     $("#buttonLoginUser").click(loginUser);
     $("#buttonRegisterUser").click(registerUser);
 
-    const kinveyBaseUrl = "https://mock.api.com/";
-
     // Bind the info / error boxes
-    $("#infoBox, #errorBox").click(function () {
+    $("#infoBox, #errorBox").click(function() {
         $(this).fadeOut();
     });
 
     // Attach AJAX "loading" event listener
     $(document).on({
-        ajaxStart: function () { $("#loadingBox").show() },
-        ajaxStop: function () { $("#loadingBox").hide() }
+        ajaxStart: function() { $("#loadingBox").show() },
+        ajaxStop: function() { $("#loadingBox").hide() }
     });
 
-	
-	const kinveyBaseUrl = "https://mock.api.com/";
+    const kinveyBaseUrl = "https://mock.api.com/";
     const kinveyAppKey = "kid_rk";
     const kinveyAppSecret = "736804a668";
 
@@ -45,19 +47,21 @@ function startApp() {
             $("#linkRegister").show();
             $("#linkListAds").hide();
             $("#linkLogout").hide();
+            $("#loggedInUser").hide();
         } else {
             // We have logged in user
             $("#linkLogin").hide();
             $("#linkRegister").hide();
             $("#linkListAds").show();
             $("#linkLogout").show();
+            $("#loggedInUser").show();
         }
     }
 
     function showInfo(message) {
         $('#infoBox').text(message);
         $('#infoBox').show();
-        setTimeout(function () {
+        setTimeout(function() {
             $('#infoBox').fadeOut();
         }, 3000);
     }
@@ -75,7 +79,6 @@ function startApp() {
             errorMsg = response.responseJSON.description;
         showError(errorMsg);
     }
-
 
     function showHomeView() {
         showView('viewHome');
@@ -124,6 +127,9 @@ function startApp() {
         sessionStorage.setItem('authToken', userAuth);
         let userId = userInfo._id;
         sessionStorage.setItem('userId', userId);
+        let username = userInfo.username;
+        sessionStorage.setItem('username', username);
+        $('#loggedInUser').text("Welcome, " + username + "!");
     }
 
     // user/register
