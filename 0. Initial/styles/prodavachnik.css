@@ -87,6 +87,7 @@ input{
     transition: .5s ease-in;
 }
 
+<<<<<<< HEAD
 #infoBox, #errorBox, #loadingBox {
     width: 100%;
     color: white;
@@ -110,12 +111,30 @@ input[type=button]{
     transition: all .2s ease-in-out;
 }
 
+=======
+input[type=text]{
+    color: white;
+    font: 16px 'Open Sans', sans-serif;
+}
+
+input:focus{
+    border-color: #00bbbb;
+}
+
+input[type=button]{
+    border: 1px solid white;
+    padding: 10px 25px;
+    transition: all .2s ease-in-out;
+}
+
+>>>>>>> Create-Edit-Ads
 input[type=button]:hover{
     background: #00bbbb;
     border-color: #00bbbb;
     transform: scale(1.1);
     cursor: pointer;
 }
+<<<<<<< HEAD
 
 #loadingBox {
     background: #7CB3E9;
@@ -126,6 +145,8 @@ input[type=button]:hover{
 #errorBox {
     background: #F50;
 }
+=======
+>>>>>>> Create-Edit-Ads
 
 table{
     margin: 0 auto;
