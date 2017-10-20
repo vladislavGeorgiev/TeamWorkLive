@@ -92,7 +92,6 @@
             };
         }
     });
-
     // Loading of adverts
     $.mockjax(function (requestSettings) {
         if (requestSettings.url === "https://mock.api.com/appdata/kid_rk/adverts" &&
@@ -109,4 +108,6 @@
             };
         }
     });
+
+
 })();
