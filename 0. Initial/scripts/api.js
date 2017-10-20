@@ -12,8 +12,6 @@
             price: 100
         }
     ];
-	
-	
 
     let users = [
         {
@@ -94,6 +92,7 @@
             };
         }
     });
+
     // Get user info
     $.mockjax(function (requestSettings) {
         if (requestSettings.url.match(/https:\/\/mock\.api\.com\/user\/kid_rk\/(.+)/)) {
@@ -128,6 +127,8 @@
             };
         }
     });
+
+
     // Create advert
     $.mockjax(function (requestSettings) {
         if (requestSettings.url === "https://mock.api.com/appdata/kid_rk/adverts" &&
@@ -210,7 +211,4 @@
             };
         }
     });
-
-
-
 })();
