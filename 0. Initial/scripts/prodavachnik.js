@@ -1,11 +1,9 @@
 function startApp() {
-	
-	    if (sessionStorage.getItem('authToken') !== null) {
+
+    if (sessionStorage.getItem('authToken') !== null) {
         let username = sessionStorage.getItem('username');
         $('#loggedInUser').text("Welcome, " + username + "!");
     }
-
-	
     showHideMenuLinks();
     showHomeView();
 
@@ -13,7 +11,7 @@ function startApp() {
     $("#linkHome").click(showHomeView);
     $("#linkLogin").click(showLoginView);
     $("#linkRegister").click(showRegisterView);
-	$("#linkListAds").click(listAdverts);
+    $("#linkListAds").click(listAdverts);
     $("#linkLogout").click(logoutUser);
 
     // Bind the form submit buttons
@@ -21,21 +19,19 @@ function startApp() {
     $("#buttonRegisterUser").click(registerUser);
 
     // Bind the info / error boxes
-    $("#infoBox, #errorBox").click(function () {
+    $("#infoBox, #errorBox").click(function() {
         $(this).fadeOut();
     });
 
     // Attach AJAX "loading" event listener
     $(document).on({
-        ajaxStart: function () { $("#loadingBox").show() },
-        ajaxStop: function () { $("#loadingBox").hide() }
+        ajaxStart: function() { $("#loadingBox").show() },
+        ajaxStop: function() { $("#loadingBox").hide() }
     });
 
-	
-	const kinveyBaseUrl = "https://mock.api.com/";
+    const kinveyBaseUrl = "https://mock.api.com/";
     const kinveyAppKey = "kid_rk";
     const kinveyAppSecret = "736804a668";
-
 
     function showView(viewName) {
         // Hide all views and show the selected view only
@@ -49,23 +45,23 @@ function startApp() {
             // No logged in user
             $("#linkLogin").show();
             $("#linkRegister").show();
-			$("#linkListAds").hide();
+            $("#linkListAds").hide();
             $("#linkLogout").hide();
-			$("#loggedInUser").hide();
+            $("#loggedInUser").hide();
         } else {
             // We have logged in user
             $("#linkLogin").hide();
             $("#linkRegister").hide();
-			$("#linkListAds").show();
+            $("#linkListAds").show();
             $("#linkLogout").show();
-			$("#loggedInUser").show();
+            $("#loggedInUser").show();
         }
     }
 
     function showInfo(message) {
         $('#infoBox').text(message);
         $('#infoBox').show();
-        setTimeout(function () {
+        setTimeout(function() {
             $('#infoBox').fadeOut();
         }, 3000);
     }
@@ -84,7 +80,6 @@ function startApp() {
         showError(errorMsg);
     }
 
-
     function showHomeView() {
         showView('viewHome');
     }
@@ -101,7 +96,7 @@ function startApp() {
 
     // user/login
     function loginUser() {
-        const kinveyLoginUrl = kinveyBaseUrl + "user/" + kinveyAppKey + "/login";;
+        const kinveyLoginUrl = kinveyBaseUrl + "user/" + kinveyAppKey + "/login";
         const kinveyAuthHeaders = {
             'Authorization': "Basic " + btoa(kinveyAppKey + ":" + kinveyAppSecret),
         };
@@ -132,10 +127,9 @@ function startApp() {
         sessionStorage.setItem('authToken', userAuth);
         let userId = userInfo._id;
         sessionStorage.setItem('userId', userId);
-		let username = userInfo.username;
+        let username = userInfo.username;
         sessionStorage.setItem('username', username);
         $('#loggedInUser').text("Welcome, " + username + "!");
-
     }
 
     // user/register
@@ -176,7 +170,8 @@ function startApp() {
         showHomeView();
         showInfo('Logout successful.');
     }
-	    // advertisement/all
+
+    // advertisement/all
     function listAdverts() {
         $('#ads').empty();
         showView('viewAds');
@@ -219,5 +214,4 @@ function startApp() {
             }
         }
     }
-
 }
